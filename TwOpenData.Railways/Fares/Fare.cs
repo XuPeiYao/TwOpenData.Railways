@@ -75,8 +75,7 @@ namespace TwOpenData.Railways.Fares {
         public static int GetFaresPrice(Station starting, Station arrival, TrainTypes trainType, FareTypes fareType) {
             return GetFaresPriceAsync(starting, arrival, trainType, fareType).GetAwaiter().GetResult();
         }
-
-
+        
         /// <summary>
         /// 非同步取得指定起始站與到達站的票價資訊
         /// </summary>

@@ -127,7 +127,7 @@ namespace TwOpenData.Railways {
         /// 透過車站名稱非同步取得車站資訊
         /// </summary>
         /// <param name="id">車站編號</param>
-        /// <returns>車站資訊</returns>
+        /// <returns>車站名稱</returns>
         public static async Task<Station> GetStationByNameAsync(string name) {
             var result = (await GetAllStationsAsync()).Where(x => x.Name == name).FirstOrDefault();
             if (result == null) throw new KeyNotFoundException("找不到指定車站");
@@ -138,10 +138,31 @@ namespace TwOpenData.Railways {
         /// 透過車站名稱取得車站資訊
         /// </summary>
         /// <param name="id">車站編號</param>
-        /// <returns>車站資訊</returns>
+        /// <returns>車站名稱</returns>
         public static Station GetStationByName(string name) {
             return GetStationByNameAsync(name).GetAwaiter().GetResult();
         }
+
+        /// <summary>
+        /// 透過車站英文名稱非同步取得車站資訊
+        /// </summary>
+        /// <param name="id">車站名稱</param>
+        /// <returns>車站資訊</returns>
+        public static async Task<Station> GetStationByEnglishNameAsync(string name) {
+            var result = (await GetAllStationsAsync()).Where(x => x.EnglishName == name).FirstOrDefault();
+            if (result == null) throw new KeyNotFoundException("找不到指定車站");
+            return result;
+        }
+
+        /// <summary>
+        /// 透過車站英文名稱取得車站資訊
+        /// </summary>
+        /// <param name="id">車站名稱</param>
+        /// <returns>車站資訊</returns>
+        public static Station GetStationByEnglishName(string name) {
+            return GetStationByEnglishNameAsync(name).GetAwaiter().GetResult();
+        }
+
 
         /// <summary>
         /// 自JSON物件轉換為車站資訊物件
