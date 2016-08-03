@@ -6,24 +6,20 @@ using System.Threading.Tasks;
 
 namespace TwOpenData.Railways {
     /// <summary>
-    /// 列車類型
+    /// 列車路線
     /// </summary>
-    public enum TrainTypes {
+    public enum Routes {
         /// <summary>
-        /// 常態
+        /// 無
         /// </summary>
-        Normal = 0,
+        None = 0,
         /// <summary>
-        /// 臨時
+        /// 山線
         /// </summary>
-        Temporary = 1,
+        Mountain = 1,
         /// <summary>
-        /// 團體
+        /// 海線
         /// </summary>
-        Organization = 2,
-        /// <summary>
-        /// 春節加開
-        /// </summary>
-        CNYExtra = 3
+        Sea = 2
     }
 }

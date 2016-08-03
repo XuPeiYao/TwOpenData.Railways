@@ -14,9 +14,9 @@ namespace TwOpenData.Railways {
         public int Id { get; private set; }
 
         /// <summary>
-        /// 車種
+        /// 列車等級
         /// </summary>
-        public TrainTypes Type { get; private set; }
+        public TrainLevels Type { get; private set; }
 
 
         /// <summary>
