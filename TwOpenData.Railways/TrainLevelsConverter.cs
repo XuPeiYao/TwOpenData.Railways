@@ -8,7 +8,7 @@ namespace TwOpenData.Railways {
     /// <summary>
     /// 將列車類型轉換為主要列車類型(如普悠瑪為自強號)
     /// </summary>
-    public static class TrainTypesConverter {
+    public static class TrainLevelsConverter {
         /// <summary>
         /// 將列車類型轉換為主要列車類型(如普悠瑪為自強號)
         /// </summary>

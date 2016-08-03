@@ -15,6 +15,7 @@ namespace TwOpenData.Railways.Extensions {
         public static async Task<Train[]> GetTrainsAsync(this Station station,DateTime date) {
             var table = await Timetable.GetTimetableByDateAsync(date);
             return table.Trains.Where(x => x.StoppingAt.Any(y => y.Station == station))
+                .OrderBy(x => x.Origin.Departure)
                 .ToArray();
         }
 

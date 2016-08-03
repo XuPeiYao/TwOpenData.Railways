@@ -52,7 +52,8 @@ namespace TwOpenData.Railways {
         /// 車站經緯度位置
         /// </summary>
         public Position Position { get; private set; }
-                
+
+        #region 比較     
         public override bool Equals(object obj) {
             var Obj = obj as Station;
             return Obj != null && Obj.Id == this.Id;
@@ -73,6 +74,7 @@ namespace TwOpenData.Railways {
         public static bool operator !=(Station a, Station b) {
             return !(a == b);
         }
+        #endregion
 
         /// <summary>
         /// 透過車站編號非同步取得車站資訊

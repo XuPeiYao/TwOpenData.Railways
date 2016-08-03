@@ -95,6 +95,7 @@ namespace TwOpenData.Railways {
         /// </summary>
         public TrainTimeInfo Destination => StoppingAt.Last();
 
+        #region 比較
         public override bool Equals(object obj) {
             var Obj = obj as Train;
             return Obj != null && Obj.Id == this.Id;
@@ -115,6 +116,7 @@ namespace TwOpenData.Railways {
         public static bool operator !=(Train a, Train b) {
             return !(a == b);
         }
+        #endregion
 
         /// <summary>
         /// 自JSON資料轉換為列車資訊物件
@@ -125,7 +127,7 @@ namespace TwOpenData.Railways {
         internal static Train Parse(JObject json, DateTime date) {
             Train result = new Train();
             result.Id = int.Parse(json["Train"].Value<string>());
-            result.Level = TrainTypesConverter.Convert(int.Parse(json["CarClass"].Value<string>()));
+            result.Level = TrainLevelsConverter.Convert(int.Parse(json["CarClass"].Value<string>()));
             result.Type = (TrainTypes)int.Parse("0" + json["Type"].Value<string>());
             result.Line = (TrainLines)int.Parse("0" + json["Route"].Value<string>());
             result.Direction = (TrainDirection)int.Parse("0" + json["LineDir"].Value<string>());
