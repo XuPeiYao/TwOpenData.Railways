@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using TwOpenData.Railways.Fares;
+
 namespace TwOpenData.Railways {
     /// <summary>
     /// 車站資訊
@@ -49,12 +51,7 @@ namespace TwOpenData.Railways {
         /// 車站經緯度位置
         /// </summary>
         public Position Position { get; private set; }
-        
-        /*
-        public static int GetFares(Station start, Station end, TrainTypes type = TrainTypes.區間) {
-
-        }*/
-
+                
         /// <summary>
         /// 透過車站編號非同步取得車站資訊
         /// </summary>
