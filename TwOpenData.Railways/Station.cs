@@ -16,6 +16,11 @@ namespace TwOpenData.Railways {
         public int Id { get; private set; }
 
         /// <summary>
+        /// 三碼式車站編號
+        /// </summary>
+        public int ShortId { get; private set; }
+
+        /// <summary>
         /// 車站中文名稱
         /// </summary>
         public string Name { get; private set; }
@@ -54,7 +59,7 @@ namespace TwOpenData.Railways {
         /// 透過車站編號非同步取得車站資訊
         /// </summary>
         /// <param name="id">車站編號</param>
-        /// <returns></returns>
+        /// <returns>車站資訊</returns>
         public static async Task<Station> GetStationByIdAsync(int id) {
             if (Cache.StationDictionary == null || Cache.StationDictionary.Count == 0) {
                 await Cache.LoadAsync();
@@ -69,9 +74,36 @@ namespace TwOpenData.Railways {
         /// 透過車站編號取得車站資訊
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>車站資訊</returns>
         public static Station GetStationById(int id) {
             return GetStationByIdAsync(id).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// 透過三碼車站編號非同步取得車站資訊
+        /// </summary>
+        /// <param name="id">車站編號</param>
+        /// <returns>車站資訊</returns>
+        public static async Task<Station> GetStationByShortIdAsync(int id) {
+            if (Cache.StationDictionary == null || Cache.StationDictionary.Count == 0) {
+                await Cache.LoadAsync();
+            }
+
+            Station result = null;
+            result = Cache.StationDictionary.Values.Where(x => x.ShortId == id).FirstOrDefault();
+            if (result == null) {
+                throw new KeyNotFoundException("找不到指定車站");
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 透過三碼車站編號取得車站資訊
+        /// </summary>
+        /// <param name="id">車站編號</param>
+        /// <returns>車站資訊</returns>
+        public static Station GetStationByShortId(int id) {
+            return GetStationByShortIdAsync(id).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -79,7 +111,7 @@ namespace TwOpenData.Railways {
         /// </summary>
         /// <returns>所有車站資訊</returns>
         public static async Task<Station[]> GetAllStationsAsync() {
-            if (Cache.StationDictionary == null) await Cache.LoadAsync();
+            if (Cache.StationDictionary == null || Cache.StationDictionary.Count == 0) await Cache.LoadAsync();
             return Cache.StationDictionary.Select(x => x.Value).ToArray();
         }
 
@@ -92,6 +124,26 @@ namespace TwOpenData.Railways {
         }
 
         /// <summary>
+        /// 透過車站名稱非同步取得車站資訊
+        /// </summary>
+        /// <param name="id">車站編號</param>
+        /// <returns>車站資訊</returns>
+        public static async Task<Station> GetStationByNameAsync(string name) {
+            var result = (await GetAllStationsAsync()).Where(x => x.Name == name).FirstOrDefault();
+            if (result == null) throw new KeyNotFoundException("找不到指定車站");
+            return result;
+        }
+
+        /// <summary>
+        /// 透過車站名稱取得車站資訊
+        /// </summary>
+        /// <param name="id">車站編號</param>
+        /// <returns>車站資訊</returns>
+        public static Station GetStationByName(string name) {
+            return GetStationByNameAsync(name).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
         /// 自JSON物件轉換為車站資訊物件
         /// </summary>
         /// <param name="json">JSON物件</param>
@@ -99,6 +151,8 @@ namespace TwOpenData.Railways {
         internal static Station Parse(JObject json) {
             Station result = new Station();
             result.Id = int.Parse("0" + json["Station_Code(4)"].Value<string>());
+            result.ShortId = int.Parse("0" + json["Station_Code(3)"].Value<string>());
+
             result.Name = json["Station_Name"].Value<string>();
             result.EnglishName = json["Station_EName"].Value<string>();
             result.Address = json["住址"].Value<string>();
@@ -106,7 +160,7 @@ namespace TwOpenData.Railways {
 
             result.Phone = json["電話"].Value<string>();
             if (result.Phone == "無") result.Phone = null;
-
+            
             Position position = null;
             Position.TryParse(json["gps"].Value<string>(),out position);
             result.Position = position;
