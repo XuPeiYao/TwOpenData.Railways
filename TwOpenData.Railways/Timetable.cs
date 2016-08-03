@@ -43,10 +43,12 @@ namespace TwOpenData.Railways {
 
             List<Train> temp = new List<Train>();
             foreach(var item in json["TrainInfos"].Value<JArray>()) {
-                temp.Add(Train.Parse(item.Value<JObject>(), date));
+                var newItem = Train.Parse(item.Value<JObject>(), date);
+                newItem.Timetable = result;            
+                temp.Add(newItem);
             }
             result.Trains = temp.ToArray();
-
+            
             return result;
         }
 
@@ -85,7 +87,7 @@ namespace TwOpenData.Railways {
                     StreamReader reader = new StreamReader(file.OpenEntryStream());
                     var result = Timetable.Parse(JObject.Parse(await reader.ReadLineAsync()),date);
                     result.Date = date;
-
+                    
                     Timetables[key] = result;
                 }
             }

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -52,6 +53,27 @@ namespace TwOpenData.Railways {
         /// </summary>
         public Position Position { get; private set; }
                 
+        public override bool Equals(object obj) {
+            var Obj = obj as Station;
+            return Obj != null && Obj.Id == this.Id;
+        }
+
+        public static bool operator ==(Station a, Station b) {
+            if (Object.ReferenceEquals(a, b)) return true;
+            if (Object.Equals(a, b)) return true;
+            if (Object.Equals(a, null) && !Object.Equals(b, null)) {
+                return b.Equals(a);
+            }
+            if (Object.Equals(b, null) && !Object.Equals(a, null)) {
+                return a.Equals(b);
+            }
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(Station a, Station b) {
+            return !(a == b);
+        }
+
         /// <summary>
         /// 透過車站編號非同步取得車站資訊
         /// </summary>
@@ -182,6 +204,12 @@ namespace TwOpenData.Railways {
             Position position = null;
             Position.TryParse(json["gps"].Value<string>(),out position);
             result.Position = position;
+
+            #region fix 三姓橋
+            if(result.Name == "三姓橋") {
+                result.Id = 1035;
+            }
+            #endregion
 
             return result;
         }
