@@ -8,3 +8,4 @@ C:\Users\XuPeiYao\Documents\GitHub\TwOpenData.Railways\Test\bin\Debug\Newtonsoft
 C:\Users\XuPeiYao\Documents\GitHub\TwOpenData.Railways\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
 C:\Users\XuPeiYao\Documents\GitHub\TwOpenData.Railways\Test\obj\Debug\Test.exe
 C:\Users\XuPeiYao\Documents\GitHub\TwOpenData.Railways\Test\obj\Debug\Test.pdb
+C:\Users\XuPeiYao\Documents\GitHub\TwOpenData.Railways\Test\bin\Debug\SharpCompress.dll

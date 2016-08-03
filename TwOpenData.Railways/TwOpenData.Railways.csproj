@@ -48,12 +48,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FaresTable.cs" />
+    <Compile Include="Fares\Fare.cs" />
+    <Compile Include="Fares\FareTypes.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Station.cs" />
     <Compile Include="Timetable.cs" />
     <Compile Include="Train.cs" />
+    <Compile Include="TrainDirection.cs" />
     <Compile Include="TrainTypes.cs" />
   </ItemGroup>
   <ItemGroup>

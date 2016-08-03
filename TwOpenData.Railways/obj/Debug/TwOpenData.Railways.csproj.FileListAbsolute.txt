@@ -5,3 +5,4 @@ C:\Users\XuPeiYao\Documents\GitHub\TwOpenData.Railways\TwOpenData.Railways\bin\D
 C:\Users\XuPeiYao\Documents\GitHub\TwOpenData.Railways\TwOpenData.Railways\obj\Debug\TwOpenData.Railways.csprojResolveAssemblyReference.cache
 C:\Users\XuPeiYao\Documents\GitHub\TwOpenData.Railways\TwOpenData.Railways\obj\Debug\TwOpenData.Railways.dll
 C:\Users\XuPeiYao\Documents\GitHub\TwOpenData.Railways\TwOpenData.Railways\obj\Debug\TwOpenData.Railways.pdb
+C:\Users\XuPeiYao\Documents\GitHub\TwOpenData.Railways\TwOpenData.Railways\bin\Debug\SharpCompress.dll
