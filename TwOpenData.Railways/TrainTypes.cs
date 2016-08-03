@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace TwOpenData.Railways {
     /// <summary>
-    /// 車種
+    /// 列車類型
     /// </summary>
     public enum TrainTypes {
         自強 = 00,

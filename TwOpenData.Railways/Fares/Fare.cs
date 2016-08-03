@@ -51,6 +51,33 @@ namespace TwOpenData.Railways.Fares {
         public int Price { get; private set; }
 
         /// <summary>
+        /// 非同步取得兩站點間的票價
+        /// </summary>
+        /// <param name="starting">起始站</param>
+        /// <param name="arrival">到達站</param>
+        /// <param name="trainType">列車類型</param>
+        /// <param name="fareType">票價類型</param>
+        /// <returns>票價</returns>
+        public static async Task<int> GetFaresPriceAsync(Station starting, Station arrival, TrainTypes trainType, FareTypes fareType) {
+            return (await GetFaresAsync(starting, arrival))
+                .Where(x => x.TrainType == trainType && x.FareType == fareType)
+                .First().Price;
+        }
+
+        /// <summary>
+        /// 取得兩站點間的票價
+        /// </summary>
+        /// <param name="starting">起始站</param>
+        /// <param name="arrival">到達站</param>
+        /// <param name="trainType">列車類型</param>
+        /// <param name="fareType">票價類型</param>
+        /// <returns>票價</returns>
+        public static int GetFaresPrice(Station starting, Station arrival, TrainTypes trainType, FareTypes fareType) {
+            return GetFaresPriceAsync(starting, arrival, trainType, fareType).GetAwaiter().GetResult();
+        }
+
+
+        /// <summary>
         /// 非同步取得指定起始站與到達站的票價資訊
         /// </summary>
         /// <param name="starting">起始站</param>

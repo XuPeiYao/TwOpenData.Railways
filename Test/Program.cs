@@ -11,7 +11,8 @@ namespace Test {
         static void Main(string[] args) {
             var result = Fare.GetFares(
                 Station.GetStationByName("臺北"),
-                Station.GetStationByName("臺南")
+                Station.GetStationByName("臺南"),
+                TrainDirection.South
                 );
         }
     }
