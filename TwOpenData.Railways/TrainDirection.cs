@@ -12,10 +12,10 @@ namespace TwOpenData.Railways {
         /// <summary>
         /// 順行
         /// </summary>
-        CW = 1,
+        CW = 0,
         /// <summary>
         /// 逆行
         /// </summary>
-        CCKW = 2
+        CCKW = 1
     }
 }

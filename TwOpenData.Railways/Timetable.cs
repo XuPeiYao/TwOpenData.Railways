@@ -70,6 +70,7 @@ namespace TwOpenData.Railways {
             }
 
             public static async Task LoadAsync(DateTime date) {
+                if (date.Date < DateTime.Now.Date) throw new ArgumentException("無法存取過去的時刻表");
                 var key = date.ToString("yyyyMMdd");
                 if (Timetables.ContainsKey(key)) {
                     ClearCache(date);

@@ -153,7 +153,7 @@ namespace TwOpenData.Railways.Fares {
                     var item = new Fare();
                     item._Starting = (int)baseInfo[0];
                     item._Arrival = (int)baseInfo[1];
-                    item.Direction = (TrainDirection)(int)baseInfo[2];
+                    item.Direction = (TrainDirection)(int)baseInfo[2]-1;
                     item.Mileage = baseInfo[3];
                     item.TrainType = (TrainLevels)(i * 10);
                     item.FareType = (FareTypes)j;

@@ -106,7 +106,7 @@ namespace TwOpenData.Railways {
             result.Level = TrainTypesConverter.Convert(int.Parse(json["CarClass"].Value<string>()));
             result.Type = (TrainTypes)int.Parse("0" + json["Type"].Value<string>());
             result.Line = (TrainLines)int.Parse("0" + json["Route"].Value<string>());
-            result.Direction = (TrainDirection)int.Parse(json["LineDir"].Value<string>());
+            result.Direction = (TrainDirection)int.Parse("0" +json["LineDir"].Value<string>());
             result.IsOverNightStn = json["OverNightStn"].Value<string>() != "0";
             result.HasCripple = json["Cripple"].Value<string>() == "Y";
             result.CanPackage = json["Package"].Value<string>() == "Y";
