@@ -8,7 +8,7 @@ namespace TwOpenData.Railways {
     /// <summary>
     /// 列車路線
     /// </summary>
-    public enum Routes {
+    public enum TrainLines {
         /// <summary>
         /// 無
         /// </summary>

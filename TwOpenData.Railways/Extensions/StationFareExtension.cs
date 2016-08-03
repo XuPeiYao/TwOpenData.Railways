@@ -52,7 +52,7 @@ namespace TwOpenData.Railways.Extensions {
         /// <param name="trainType">列車類型</param>
         /// <param name="fareType">票價類型</param>
         /// <returns>票價</returns>
-        public static async Task<int> GetFaresPriceAsync(this Station THIS, Station arrival, TrainTypes trainType, FareTypes fareType) {
+        public static async Task<int> GetFaresPriceAsync(this Station THIS, Station arrival, TrainLevels trainType, FareTypes fareType) {
             return await Fare.GetFaresPriceAsync(THIS, arrival, trainType, fareType);
         }
 
@@ -63,7 +63,7 @@ namespace TwOpenData.Railways.Extensions {
         /// <param name="trainType">列車類型</param>
         /// <param name="fareType">票價類型</param>
         /// <returns>票價</returns>
-        public static int GetFaresPrice(this Station THIS, Station arrival, TrainTypes trainType, FareTypes fareType) {
+        public static int GetFaresPrice(this Station THIS, Station arrival, TrainLevels trainType, FareTypes fareType) {
             return THIS.GetFaresPriceAsync(arrival, trainType, fareType).GetAwaiter().GetResult();
         }
     }

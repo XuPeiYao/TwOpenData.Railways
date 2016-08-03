@@ -15,15 +15,26 @@ namespace TwOpenData.Railways.Fares {
         private int _Starting;
         private int _Arrival;
 
+
+        private Station _Cache_Starting;
         /// <summary>
         /// 起始站
         /// </summary>
-        public Station Starting => Station.GetStationByShortId(_Starting);
+        public Station Starting {
+            get {
+                return _Cache_Starting ?? (_Cache_Starting = Station.GetStationByShortId(_Starting));
+            }
+        }
 
+        private Station _Cache_Arrival;
         /// <summary>
         /// 到達站
         /// </summary>
-        public Station Arrival => Station.GetStationByShortId(_Arrival);
+        public Station Arrival {
+            get {
+                return _Cache_Arrival ?? (_Cache_Arrival = Station.GetStationByShortId(_Arrival));
+            }
+        }
 
         /// <summary>
         /// 列車方向
@@ -31,9 +42,9 @@ namespace TwOpenData.Railways.Fares {
         public TrainDirection Direction { get; set; }
 
         /// <summary>
-        /// 列車類型
+        /// 列車等級
         /// </summary>
-        public TrainTypes TrainType { get; set; }
+        public TrainLevels TrainType { get; set; }
 
         /// <summary>
         /// 票價類型
@@ -58,7 +69,7 @@ namespace TwOpenData.Railways.Fares {
         /// <param name="trainType">列車類型</param>
         /// <param name="fareType">票價類型</param>
         /// <returns>票價</returns>
-        public static async Task<int> GetFaresPriceAsync(Station starting, Station arrival, TrainTypes trainType, FareTypes fareType) {
+        public static async Task<int> GetFaresPriceAsync(Station starting, Station arrival, TrainLevels trainType, FareTypes fareType) {
             return (await GetFaresAsync(starting, arrival))
                 .Where(x => x.TrainType == TrainTypesConverter.Convert(trainType) && x.FareType == fareType)
                 .First().Price;
@@ -72,7 +83,7 @@ namespace TwOpenData.Railways.Fares {
         /// <param name="trainType">列車類型</param>
         /// <param name="fareType">票價類型</param>
         /// <returns>票價</returns>
-        public static int GetFaresPrice(Station starting, Station arrival, TrainTypes trainType, FareTypes fareType) {
+        public static int GetFaresPrice(Station starting, Station arrival, TrainLevels trainType, FareTypes fareType) {
             return GetFaresPriceAsync(starting, arrival, trainType, fareType).GetAwaiter().GetResult();
         }
         
@@ -144,7 +155,7 @@ namespace TwOpenData.Railways.Fares {
                     item._Arrival = (int)baseInfo[1];
                     item.Direction = (TrainDirection)(int)baseInfo[2];
                     item.Mileage = baseInfo[3];
-                    item.TrainType = (TrainTypes)(i * 10);
+                    item.TrainType = (TrainLevels)(i * 10);
                     item.FareType = (FareTypes)j;
                     item.Price = int.Parse(fareInfo[i][j]);
 
