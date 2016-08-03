@@ -57,6 +57,7 @@
     <Compile Include="Train.cs" />
     <Compile Include="TrainDirection.cs" />
     <Compile Include="TrainTypes.cs" />
+    <Compile Include="TrainTypesConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
