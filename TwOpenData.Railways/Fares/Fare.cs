@@ -60,7 +60,7 @@ namespace TwOpenData.Railways.Fares {
         /// <returns>票價</returns>
         public static async Task<int> GetFaresPriceAsync(Station starting, Station arrival, TrainTypes trainType, FareTypes fareType) {
             return (await GetFaresAsync(starting, arrival))
-                .Where(x => x.TrainType == trainType && x.FareType == fareType)
+                .Where(x => x.TrainType == TrainTypesConverter.Convert(trainType) && x.FareType == fareType)
                 .First().Price;
         }
 
