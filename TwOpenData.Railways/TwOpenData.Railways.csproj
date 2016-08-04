@@ -55,6 +55,7 @@
     <Compile Include="Comparers\StationComparer.cs" />
     <Compile Include="Extensions\StationFareExtension.cs" />
     <Compile Include="Extensions\StationTimetableExtension.cs" />
+    <Compile Include="Extensions\StationWifiExtension.cs" />
     <Compile Include="Extensions\TrainRealTimeExtension.cs" />
     <Compile Include="Fares\Fare.cs" />
     <Compile Include="Fares\FareTypes.cs" />
