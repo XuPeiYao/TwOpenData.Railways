@@ -10,7 +10,7 @@ using TwOpenData.Railways.Comparers;
 
 namespace Test {
     class Program {
-        static void Main(string[] args) {
+        static void Main(string[] args) {/*
             var tainanTodayTrains = Station.GetStationByName("臺南").GetTrains(DateTime.Now).ToArray();
             var KSTodayTrains = Station.GetStationByName("高雄").GetTrains(DateTime.Now).ToArray();
 
@@ -18,7 +18,11 @@ namespace Test {
 
             //高雄南下區間到高雄
             var localTrains = tainanToKS.Where(x => x.Level == TrainLevels.Local)
-                .Where(x=>x.Direction == TrainDirection.CCKW);
+                .Where(x=>x.Direction == TrainDirection.CCKW);*/
+
+            var timetable = Timetable.GetTimetableByDate(DateTime.Now);
+            var train = timetable.Trains.Where(x => x.Id == 562).First();
+            var real = train.GetRealTimeInfo();
         }
     }
 }
