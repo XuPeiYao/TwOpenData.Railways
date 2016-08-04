@@ -77,6 +77,11 @@ namespace TwOpenData.Railways.RealTime {
             RefreshAsync().GetAwaiter();
         }
 
+        /// <summary>
+        /// 非同步取得指定列車即時資訊
+        /// </summary>
+        /// <param name="train">指定列車</param>
+        /// <returns>列車資訊</returns>
         public static async Task<RealTimeTrainInfo> GetRealTimeTrainInfoAsync(Train train) {
             if (train.Timetable.Date.Date != DateTime.Now.Date) {
                 throw new InvalidOperationException("來源列車資訊並非來自今日時刻表");
@@ -90,6 +95,11 @@ namespace TwOpenData.Railways.RealTime {
             return result;
         }
 
+        /// <summary>
+        /// 取得指定列車即時資訊
+        /// </summary>
+        /// <param name="train">指定列車</param>
+        /// <returns>列車資訊</returns>
         public static RealTimeTrainInfo GetRealTimeTrainInfo(Train train) {
             return GetRealTimeTrainInfoAsync(train).GetAwaiter().GetResult();
         }
